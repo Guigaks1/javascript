@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Meu primeiro programa</title>
+    <style>
+        body {
+            background-color: rgb(149, 213, 171);
+            color: rgb(20, 181, 90);
+            font: normal 20pt Arial
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        button {
+            background-color: cornflowerblue;
+
+        }
+
+        h1 {
+            color: rgb(174, 58, 8);
+        }
+
+        h2 {
+            color: lightsalmon;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Olá, mundo </h1>
+    <p>Primeiro projeto</p>
+
+    <audio id="sound" src="MCpoze.mp3" style="display: nome;"></audio>
+    <div class="container">
+        <h2>Minutos:</h2>
+        <select name="minutos" id="minutos"></select>
+
+        <h2>segundos:</h2>
+        <select name="segundos" id="segundos"></select>
+        <br />
+        <br />
+        <button id="Comecar">Começar</button>,
+        <div id="display">
+            <h3></h3>
+        </div>
+
+    </div>
+
+    <script>
+        var display = document.getElementById('display')
+
+        var minutos = document.getElementById('minutos')
+        var segundos = document.getElementById('segundos')
+
+        var Comecar = document.getElementById('Comecar')
+        var CronometroSeg;
+        var minutoAtual;
+        var segundoAtual;
+
+        var interval;
+
+        for (var i = 0; i <= 60; i++) {
+            minutos.innerHTML += '<option value="' + i + '">' + i + '</option>';
+        }
+        for (var i = 0; i <= 60; i++) {
+            segundos.innerHTML += '<option value="' + i + '">' + i + '</option>';
+        }
+        Comecar.addEventListener('click', function () {
+            minutoAtual = minutos.value;
+            segundoAtual = segundos.value;
+
+            display.childNodes[1].innerHTML = minutoAtual + ":" + segundoAtual;
+
+            interval = setInterval(function () {
+                segundoAtual--;
+                if (segundoAtual <= 0) {
+                    if (minutoAtual > 0) {
+                        minutoAtual--;
+                        segundoAtual = 59;
+                    } else {
+                        document.getElementById("sound").play();
+                        clearInterval(interval);
+                    }
+                }
+                display.childNodes[1].innerHTML = minutoAtual + ":" + segundoAtual;
+            }, 1000);
+
+        })
+
+    </script>
+    <script>
+        window.alert('VOCE TEM CERTEZA QUE QUER CONTINUAR ?')
+        window.confirm('Vai tocar uma musica ')
+        window.prompt('se quiser escutar clica no começar!')
+    </script>
+</body>
+
+</html>
